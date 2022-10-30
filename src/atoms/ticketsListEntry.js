@@ -2,7 +2,7 @@ import { useSingleAndDoubleClick } from "../helpers";
 
 import { StatusDisplay, DateDisplay, AfmCheck } from "../helpers";
 
-export const TicketsListEntry = ({ ticket, updateStatus }) => {
+export const TicketsListEntry = ({ ticket, updateStatus, grid }) => {
   // handling double click to make api call
   const click = useSingleAndDoubleClick(
     () => {},
@@ -10,7 +10,11 @@ export const TicketsListEntry = ({ ticket, updateStatus }) => {
   );
 
   return (
-    <div className="border-2 border-gray-400 border-l-4 border-l-blue-600">
+    <div
+      className={
+        grid ? "border-2 border-gray-400 border-l-4 border-l-blue-600" : ""
+      }
+    >
       <div className="py-4 px-4 flex flex-col gap-4 justify-center">
         <button
           onClick={click}
