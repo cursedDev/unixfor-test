@@ -2,8 +2,6 @@ import axios from "axios";
 
 let baseURL = "https://frontendtest.unixfor.gr";
 
-let ticketsMock = [];
-
 let ticketEntryMock = {
   Id: 1,
   Name: "Transaction Server",
@@ -12,8 +10,23 @@ let ticketEntryMock = {
   Duration: 12,
   Status: 1,
   Assignee: "George Foulis",
-  TaxId: 01111111,
+  TaxId: 1111111,
 };
+
+export let ticketsMock = [
+  ticketEntryMock,
+  ticketEntryMock,
+  ticketEntryMock,
+  ticketEntryMock,
+  ticketEntryMock,
+  ticketEntryMock,
+  ticketEntryMock,
+  ticketEntryMock,
+  ticketEntryMock,
+  ticketEntryMock,
+  ticketEntryMock,
+  ticketEntryMock,
+];
 
 /* 
 Status code debugging
