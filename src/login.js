@@ -15,10 +15,12 @@ export const Login = ({ setLoggedIn }) => {
     LoginCall(
       data,
       (r) => {
+        // set authorization header
         setAuthorization(r.data);
+        // update bool for the page to turn to the tickets list
         setLoggedIn(true);
       },
-      (e) => toast.error(`Couldn't log in for some reason. ${e.status.code}`)
+      (e) => toast.error("Couldn't log in for some reason.")
     );
   };
 

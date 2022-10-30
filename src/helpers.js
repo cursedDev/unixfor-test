@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import moment from "moment";
 
+// use switch statement based on status int, to change color and status display message
 export const StatusDisplay = ({ status }) => {
   let statusDis = "";
   let color = "";
@@ -28,6 +29,7 @@ export const StatusDisplay = ({ status }) => {
   return <span className={color}>{statusDis}</span>;
 };
 
+// use moment to display utc date to a date that can be displayed to user
 export const DateDisplay = ({ date }) => {
   let dateDis = moment(date).format("YYYY/MM/DD");
   return <span>{dateDis.toString()}</span>;
@@ -38,7 +40,7 @@ export const AfmCheck = ({ afm }) => {
   // invalid afm 853003357
   let error = validateAFM(afm.toString());
 
-  return <span className={error ? "" : "text-red-400"}>{afm}</span>;
+  return <span className={!error && "text-red-400"}>{afm}</span>;
 };
 
 export function validateAFM(afm) {

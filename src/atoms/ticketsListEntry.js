@@ -11,9 +11,10 @@ export const TicketsListEntry = ({ ticket, updateStatus, grid }) => {
 
   return (
     <div
-      className={
-        grid ? "border-2 border-gray-400 border-l-4 border-l-blue-600" : ""
-      }
+      className={`
+        ${grid ? "border-2 border-gray-400 border-l-4 border-l-blue-600" : ""}
+        w-full md:w-fit
+      `}
     >
       <div className="py-4 px-4 flex flex-col gap-4 justify-center">
         <button
@@ -22,7 +23,7 @@ export const TicketsListEntry = ({ ticket, updateStatus, grid }) => {
         >
           <span className="font-bold text-blue-600">{ticket?.Name}</span>
         </button>
-        <div className="grid grid-cols-3 gap-2 w-full">
+        <div className="grid grid-cols-3 gap-2">
           <FieldRow label={"Id"}>
             <span>{ticket?.Id}</span>
           </FieldRow>
@@ -33,7 +34,7 @@ export const TicketsListEntry = ({ ticket, updateStatus, grid }) => {
             <DateDisplay date={ticket?.DueDate} />
           </FieldRow>
           <FieldRow label={"Assignee"}>
-            <span>{ticket?.Assignee}</span>
+            <span className="block truncate w-48">{ticket?.Assignee}</span>
           </FieldRow>
           <FieldRow label={"Status"}>
             <StatusDisplay status={ticket?.Status} />

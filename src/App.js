@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { TickesList } from "./organisms/ticketsList";
+import { TicketsList } from "./organisms/ticketsList";
 import { Login } from "./login";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { GetTickets } from "./services";
+
+import { Button } from "./atoms/button";
 
 // import "./axiosConfig";
 
@@ -29,11 +31,17 @@ function App() {
     <div className="App">
       {loggedIn ? (
         <div className="flex flex-col gap-4 py-4 px-2 lg:px-4">
-          <span className="flex w-full justify-center text-center font-bold text-black">
-            User is logged in.
-          </span>
-          <button onClick={() => setLoggedIn(false)}>logout</button>
-          <TickesList tickets={tickets} setTickets={setTickets} />
+          <div className="flex flex-row pb-4">
+            <span className="flex w-full justify-center text-center font-bold text-black">
+              User is logged in.
+            </span>
+            <Button
+              className="place-self-center"
+              onClick={() => setLoggedIn(false)}
+              label={"logout"}
+            />
+          </div>
+          <TicketsList tickets={tickets} setTickets={setTickets} />
         </div>
       ) : (
         <Login setLoggedIn={setLoggedIn} />
