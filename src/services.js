@@ -1,6 +1,23 @@
 import axios from "axios";
 
-let baseURL = "https://frontendtest.unixfor.gr";
+export const setAuthorization = (authorization) => {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${authorization}`;
+};
+
+export const LoginCall = (data, onSubmission, onError) => {
+  let url = "/api/Tickets/login";
+  axios.post(url, data, onSubmission, onError);
+};
+
+export const GetTickets = (onSubmission, onError) => {
+  let url = "/api/Tickets/GetTickets";
+  axios.get(url, onSubmission, onError);
+};
+
+export const UpdateStatus = (data, onSubmission, onError) => {
+  let url = "/api/Tickets/UpdateStatus ";
+  axios.get(url, data, onSubmission, onError);
+};
 
 let ticketEntryMock = {
   Id: 1,

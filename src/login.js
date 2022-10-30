@@ -1,4 +1,4 @@
-export const Login = () => {
+export const Login = ({ setLoggedIn }) => {
   return (
     <div class="h-full justify-center flex">
       <div className="flex flex-col gap-8 w-1/3 border-2 place-self-center mx-auto items bg-white shadow-md rounded px-8 pt-6 pb-8">

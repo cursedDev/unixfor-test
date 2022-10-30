@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TickesList } from "./organisms/ticketsList";
 import { Login } from "./login";
 
@@ -8,26 +8,30 @@ import "react-toastify/dist/ReactToastify.css";
 // mock data
 import { ticketsMock } from "./services";
 
+import "./axiosConfig";
+
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
 
-  const notify = () => toast("Wow so easy!");
+  const [tickets, setTickets] = useState([]);
+
+  useEffect(() => {
+    setTickets([...ticketsMock]);
+  }, []);
 
   return (
     <div className="App">
-      <div className="h-screen w-screen flex flex-col px-4 py-4">
-        {loggedIn ? (
-          <>
-            <span className="font-bold text-red-400">testing tailwind</span>
-            <br />
-            <TickesList tickets={ticketsMock} />
-          </>
-        ) : (
-          <Login />
-        )}
-        <button onClick={notify}>test toast!</button>
-        <ToastContainer />
-      </div>
+      {loggedIn ? (
+        <div className="flex flex-col gap-4 py-4 px-4">
+          <span className="flex w-full justify-center text-center font-bold text-black">
+            User is logged in.
+          </span>
+          <TickesList tickets={tickets} setTickets={setTickets} />
+        </div>
+      ) : (
+        <Login setLoggedIn={setLoggedIn} />
+      )}
+      <ToastContainer />
     </div>
   );
 }
