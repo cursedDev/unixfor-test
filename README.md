@@ -12,6 +12,8 @@ and then
 
 ### `npm run start`
 
+and of course, press enter...
+
 It will run the app in the development mode.
 
 If the browser doesn't open the project, just navigate to [http://localhost:3000](http://localhost:3000).
