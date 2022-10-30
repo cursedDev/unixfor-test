@@ -1,5 +1,7 @@
 import { useSingleAndDoubleClick } from "../helpers";
 
+import { StatusDisplay, DateDisplay, AfmCheck } from "../helpers";
+
 export const TicketsListEntry = ({ ticket, updateStatus }) => {
   // handling double click to make api call
   const click = useSingleAndDoubleClick(
@@ -21,19 +23,19 @@ export const TicketsListEntry = ({ ticket, updateStatus }) => {
             <span>{ticket?.Id}</span>
           </FieldRow>
           <FieldRow label={"Start date"}>
-            <span>{ticket?.StartDate}</span>
+            <DateDisplay date={ticket?.StartDate} />
           </FieldRow>
           <FieldRow label={"Due date"}>
-            <span>{ticket?.DueDate}</span>
+            <DateDisplay date={ticket?.DueDate} />
           </FieldRow>
           <FieldRow label={"Assignee"}>
             <span>{ticket?.Assignee}</span>
           </FieldRow>
           <FieldRow label={"Status"}>
-            <span>{ticket?.Status}</span>
+            <StatusDisplay status={ticket?.Status} />
           </FieldRow>
           <FieldRow label={"Tax Id"}>
-            <span>{ticket?.TaxId}</span>
+            <AfmCheck afm={ticket?.TaxId} />
           </FieldRow>
         </div>
       </div>

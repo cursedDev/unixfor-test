@@ -1,29 +1,63 @@
-import Moment from "react-moment";
-
 import { useState, useEffect } from "react";
 
-export const StatusDisplay = ({ status }) => {};
+import moment from "moment";
 
-export const DateDisplay = ({ date }) => {};
+export const StatusDisplay = ({ status }) => {
+  let statusDis = "";
+  let color = "";
 
-export const AfmCheck = ({ afm }) => {};
+  switch (status) {
+    case 0:
+      statusDis = "Open";
+      color = "text-red-600";
+      break;
+    case 1:
+      statusDis = "In Progress";
+      color = "text-blue-600";
+      break;
+    case 2:
+      statusDis = "Finished";
+      color = "text-green-600";
+      break;
+    default:
+      statusDis = "Unknown";
+      color = "text-black";
+      break;
+  }
 
-/*
+  return <span className={color}>{statusDis}</span>;
+};
 
-https://tatief.wordpress.com/2008/12/29/αλγόριθμος-του-αφμ-έλεγχος-ορθότητας/
+export const DateDisplay = ({ date }) => {
+  let dateDis = moment(date).format("YYYY/MM/DD");
+  return <span>{dateDis.toString()}</span>;
+};
 
-f IsNumber Then
-TotalVal = 0
-For i = 8 To 1 Step -1
-TotalVal = TotalVal + Val(Mid(VatNo, i, 1)) * 2 ^ (9 – i)
-Next
-RetVal = (((TotalVal Mod 11) Mod 10) = Val(Right(VatNo, 1)))
-End If
-End If
-CheckAFM = RetVal
-End Function
+export const AfmCheck = ({ afm }) => {
+  // valid afm 731385437
+  // invalid afm 853003357
+  let error = validateAFM(afm.toString());
 
-*/
+  return <span className={error ? "" : "text-red-400"}>{afm}</span>;
+};
+
+export function validateAFM(afm) {
+  if (afm.length != 9 || !/^\d+$/.test(afm) || afm === "0".repeat(9)) {
+    // "Τα ψηφία του ΑΦΜ πρέπει να είναι 9 αριθμοί"
+    return false;
+  }
+
+  const sum = afm
+    .substring(0, 8)
+    .split("")
+    .reduce((s, v, i) => s + (parseInt(v) << (8 - i)), 0);
+
+  const calc = sum % 11;
+  const d9 = parseInt(afm[8]);
+  const valid = calc % 10 === d9;
+
+  return valid;
+}
 
 export function useSingleAndDoubleClick(
   actionSimpleClick,
